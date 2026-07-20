@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>General Journal | FinVision Uganda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4f8;
+color:#333;
+}
+
+header{
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+margin-bottom:5px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:25px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.15);
+}
+
+h2{
+color:#0B6E4F;
+margin-bottom:20px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+label{
+font-weight:bold;
+margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:15px;
+outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#0B6E4F;
+}
+
+textarea{
+resize:vertical;
+min-height:90px;
+}
+
+.buttons{
+margin-top:25px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:15px;
+margin-right:10px;
+margin-bottom:10px;
+transition:0.3s;
+}
+
+.save{
+background:#198754;
+color:white;
+}
+
+.clear{
+background:#dc3545;
+color:white;
+}
+
+.print{
+background:#0d6efd;
+color:white;
+}
+
+.back{
+background:#6c757d;
+color:white;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+#journalResult{
+margin-top:15px;
+font-weight:bold;
+color:green;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:30px;
+}
+
+table th{
+background:#0B6E4F;
+color:white;
+padding:12px;
+}
+
+table td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+footer{
+margin-top:30px;
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>FinVision Uganda</h1>
+
+<p>General Journal</p>
+
+</header>
+
+<div class="container">
+
+<h2>Create Journal Entry</h2>
+
+<form onsubmit="saveJournal(); return false;">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Journal Number</label>
+
+<input
+type="text"
+id="journalNumber"
+value="JV-0001"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Date</label>
+
+<input
+type="date"
+id="journalDate">
+
+</div>
+
+<div class="form-group">
+
+<label>Debit Account</label>
+
+<select id="debitAccount">
+
+<option value="">Select Account</option>
+<option>Cash</option>
+<option>Bank</option>
+<option>Accounts Receivable</option>
+<option>Inventory</option>
+<option>Equipment</option>
+<option>Rent Expense</option>
+<option>Salaries Expense</option>
+<option>Utilities Expense</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Credit Account</label>
+
+<select id="creditAccount">
+
+<option value="">Select Account</option>
+<option>Cash</option>
+<option>Bank</option>
+<option>Accounts Payable</option>
+<option>Sales Revenue</option>
+<option>Capital</option>
+<option>Loans</option>
+<option>Service Revenue</option>
+
+</select>
+
+</div>
+<div class="form-group">
+
+<label>Amount (UGX)</label>
+
+<input
+type="number"
+id="journalAmount"
+placeholder="Enter Amount">
+
+</div>
+
+<div class="form-group">
+
+<label>Reference Number</label>
+
+<input
+type="text"
+id="referenceNumber"
+placeholder="Invoice, Receipt or Voucher Number">
+
+</div>
+
+<div class="form-group" style="grid-column:1 / -1;">
+
+<label>Description</label>
+
+<textarea
+id="journalDescription"
+placeholder="Enter journal description..."></textarea>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+type="submit"
+class="save">
+💾 Save Journal Entry
+</button>
+
+<button
+type="reset"
+class="clear">
+🗑 Clear
+</button>
+
+<button
+type="button"
+class="print"
+onclick="window.print();">
+🖨 Print
+</button>
+
+<button
+type="button"
+class="back"
+onclick="window.location.href='dashboard.html';">
+🏠 Back to Dashboard
+</button>
+
+</div>
+
+<div id="journalResult"></div>
+
+</form>
+
+<hr style="margin:35px 0;">
+
+<h2>Journal Records</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Journal No.</th>
+<th>Date</th>
+<th>Debit Account</th>
+<th>Credit Account</th>
+<th>Amount</th>
+<th>Reference</th>
+<th>Description</th>
+
+</tr>
+
+</thead>
+
+<tbody id="journalTable">
+
+<tr>
+
+<td colspan="7">
+
+No journal entries available.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<script>
+
+let journalCounter = 1;
+
+// Generate Journal Number
+function generateJournalNumber(){
+
+    let number = "JV-" + String(journalCounter).padStart(4,"0");
+
+    document.getElementById("journalNumber").value = number;
+
+}
+
+// Clear Form
+function clearJournal(){
+
+    document.getElementById("journalDate").value = "";
+    document.getElementById("debitAccount").selectedIndex = 0;
+    document.getElementById("creditAccount").selectedIndex = 0;
+    document.getElementById("journalAmount").value = "";
+    document.getElementById("referenceNumber").value = "";
+    document.getElementById("journalDescription").value = "";
+
+}
+
+// Initialize
+generateJournalNumber();
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+
+© 2026 FinVision Uganda | Version 1.0 <br>
+Developed by MUBANGIZI EMMANUEL
+
+</footer>
+
+</body>
+</html>

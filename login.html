@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinVision Uganda | Login</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .login-box{
+            background:#fff;
+            width:380px;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        h1{
+            color:#0b7a0b;
+            margin-bottom:5px;
+        }
+
+        h2{
+            color:#333;
+            margin-bottom:20px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:5px;
+            font-size:15px;
+        }
+
+        .password-container{
+            position:relative;
+        }
+
+        .password-container span{
+            position:absolute;
+            right:15px;
+            top:50%;
+            transform:translateY(-50%);
+            cursor:pointer;
+            font-size:18px;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:12px;
+            background:#0b7a0b;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+            margin-top:10px;
+        }
+
+        .login-btn:hover{
+            background:#095f09;
+        }
+
+        .register-btn{
+            width:100%;
+            padding:12px;
+            background:#0066cc;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+            margin-top:15px;
+        }
+
+        .register-btn:hover{
+            background:#004c99;
+        }
+
+        a{
+            color:#0066cc;
+            text-decoration:none;
+        }
+
+        a:hover{
+            text-decoration:underline;
+        }
+
+        #message{
+            margin-top:15px;
+            color:red;
+            font-weight:bold;
+        }
+
+        footer{
+            margin-top:25px;
+            font-size:13px;
+            color:#666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>FinVision Uganda</h1>
+    <h2>Login</h2>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Username"
+        required>
+
+    <div class="password-container">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            required>
+
+        <span onclick="togglePassword()">👁️</span>
+
+    </div>
+
+    <button class="login-btn" onclick="login()">
+        Login
+    </button>
+
+    <br><br>
+
+    <a href="forgot.html">
+        Forgot Password?
+    </a>
+
+    <br><br>
+
+    <button class="register-btn"
+        onclick="window.location.href='register.html'">
+        Create Account
+    </button>
+
+    <p id="message"></p>
+
+    <footer>
+        © 2026 FinVision Uganda<br>
+        Developed by MUBANGIZI EMMANUEL
+    </footer>
+
+</div>
+
+<!-- Firebase functions -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
