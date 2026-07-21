@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinVision Uganda Dashboard</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#eef4f8}
+header{background:#0b6e4f;color:#fff;padding:20px;text-align:center}
+.container{display:flex}
+aside{
+width:260px;
+background:#144d3b;
+min-height:100vh;
+color:#fff;
+padding:20px;
+box-sizing:border-box;
+overflow-y:auto;
+}
+
+aside h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+aside h3{
+margin-top:20px;
+margin-bottom:10px;
+color:#ffd54f;
+font-size:16px;
+}
+
+aside a{
+display:block;
+color:white;
+text-decoration:none;
+padding:10px;
+margin-bottom:5px;
+border-radius:6px;
+transition:.3s;
+}
+
+aside a:hover{
+background:white;
+color:#144d3b;
+}
+
+aside hr{
+border:1px solid rgba(255,255,255,.2);
+margin:15px 0;
+}
+aside a{display:block;color:#fff;text-decoration:none;padding:10px 0}
+main{flex:1;padding:20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.card{background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.card h3{margin:0;color:#0b6e4f}
+.actions button{margin:8px;padding:10px 16px;border:none;border-radius:6px;background:#0b6e4f;color:#fff;cursor:pointer}
+table{width:100%;border-collapse:collapse;background:#fff;margin-top:20px}
+th,td{border:1px solid #ddd;padding:10px}
+th{background:#0b6e4f;color:#fff}
+.notice{background:#fff;padding:15px;border-radius:10px;margin-top:20px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+footer{background:#144d3b;color:#fff;text-align:center;padding:15px;margin-top:20px}
+</style>
+</head>
+<body>
+<header>
+<h1>FinVision Uganda</h1>
+<p>Financial Management System for SMEs</p>
+</header>
+<div class="container">
+<aside>
+
+<h2>FinVision</h2>
+
+<h3>Main</h3>
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<hr>
+
+<h3>Business</h3>
+<a href="sales.html">💰 Sales</a>
+<a href="expenses.html">💸 Expenses</a>
+<a href="products.html">📦 Products</a>
+<a href="customers.html">👥 Customers</a>
+
+<hr>
+
+<h3>Accounting</h3>
+<a href="general-journal.html">📖 General Journal</a>
+<a href="general-ledger.html">📚 General Ledger</a>
+<a href="trial-balance.html">⚖️ Trial Balance</a>
+<a href="income-statement.html">📈 Income Statement</a>
+<a href="balance-sheet.html">🧾 Balance Sheet</a>
+<a href="cashflow-statement.html">💵 Cash Flow Statement</a>
+<a href="accounts-payable.html">📤 Accounts Payable</a>
+<a href="accounts-receivable.html">📥 Accounts Receivable</a>
+
+<hr>
+
+<h3>Reports</h3>
+<a href="reports.html">📊 Reports</a>
+
+<hr>
+
+<h3>Settings</h3>
+<a href="profile.html">👤 Profile</a>
+<a href="settings.html">⚙️ Settings</a>
+<a href="login.html" onclick="logout()">🚪 Logout</a>
+
+</aside>
+<main>
+<h2 id="welcome">Welcome</h2>
+<div class="cards">
+
+<div class="card">
+<h3>Today's Sales</h3>
+<p id="todaySales">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Today's Expenses</h3>
+<p id="todayExpenses">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Today's Profit</h3>
+<p id="todayProfit">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Cash Balance</h3>
+<p id="cashBalance">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Customers</h3>
+<p id="customerCount">0</p>
+</div>
+
+<div class="card">
+<h3>Products</h3>
+<p id="productCount">0</p>
+</div>
+
+</div>
+
+
+<h2>Quick Actions</h2>
+
+<button onclick="window.location.href='sales.html'">
+Record Sale
+</button>
+
+<button onclick="window.location.href='expenses.html'">
+Record Expense
+</button>
+
+<button onclick="window.location.href='products.html'">
+Add Product
+</button>
+
+<button onclick="window.location.href='customers.html'">
+Add Customer
+</button>
+
+<button onclick="window.location.href='reports.html'">
+Generate Report
+</button>
+
+<button onclick="printReport()">
+Print Report
+</button>
+
+</div>
+<h2>Recent Transactions</h2>
+<table>
+<tr><th>Date</th><th>Description</th><th>Type</th><th>Amount</th></tr>
+<tr><td>-</td><td>No transactions yet</td><td>-</td><td>UGX 0</td></tr>
+</table>
+<div class="notice">
+<h2>Notifications</h2>
+<ul>
+<li>Welcome to FinVision Uganda.</li>
+<li>No new notifications.</li>
+<li>Remember to back up your data regularly.</li>
+</ul>
+</div>
+</main>
+</div>
+<script>
+
+function printReport(){
+
+    window.print();
+
+}
+
+</script>
+<script>
+function printReport() {
+    window.print();
+}
+
+let business = localStorage.getItem("business");
+
+if (business) {
+    document.getElementById("welcome").innerHTML =
+        "Welcome, " + business;
+}
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+© 2026 FinVision Uganda | Version 1.0 <br>
+Developed by MUBANGIZI EMMANUEL
+</footer>
+
+</body>
+</html>
