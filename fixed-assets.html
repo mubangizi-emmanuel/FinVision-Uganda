@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fixed Assets | FinVision Uganda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4f8;
+color:#333;
+}
+
+header{
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+margin-bottom:5px;
+}
+
+.container{
+width:95%;
+max-width:1200px;
+margin:25px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+}
+
+h2{
+color:#0B6E4F;
+margin-bottom:20px;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:#f8f9fa;
+padding:20px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.card h3{
+color:#0B6E4F;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+.buttons{
+margin-bottom:25px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:15px;
+margin-right:10px;
+margin-bottom:10px;
+transition:.3s;
+}
+
+.print{
+background:#0d6efd;
+color:white;
+}
+
+.back{
+background:#6c757d;
+color:white;
+}
+
+button:hover{
+opacity:.9;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:#0B6E4F;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+tfoot td{
+font-weight:bold;
+background:#f2f2f2;
+}
+
+footer{
+margin-top:30px;
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>FinVision Uganda</h1>
+
+<p>Fixed Assets Management</p>
+
+</header>
+
+<div class="container">
+
+<h2>Fixed Assets Register</h2>
+<div class="summary">
+
+<div class="card">
+<h3>Total Asset Cost</h3>
+<p id="totalAssetCost">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Total Depreciation</h3>
+<p id="totalDepreciation">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Book Value</h3>
+<p id="bookValue">UGX 0</p>
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="print"
+onclick="window.print();">
+🖨 Print Fixed Assets
+</button>
+
+<button
+class="back"
+onclick="window.location.href='dashboard.html';">
+🏠 Back to Dashboard
+</button>
+
+</div>
+
+<h2>Fixed Assets Register</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Asset Name</th>
+<th>Category</th>
+<th>Purchase Date</th>
+<th>Cost (UGX)</th>
+<th>Depreciation (UGX)</th>
+<th>Book Value (UGX)</th>
+
+</tr>
+
+</thead>
+
+<tbody id="assetTable">
+
+<tr>
+
+<td colspan="6">
+
+No Fixed Assets Found
+
+</td>
+
+</tr>
+
+</tbody>
+
+<tfoot>
+
+<tr>
+
+<td colspan="3">
+<strong>Totals</strong>
+</td>
+
+<td id="footerAssetCost">
+UGX 0
+</td>
+
+<td id="footerAssetDepreciation">
+UGX 0
+</td>
+
+<td id="footerBookValue">
+UGX 0
+</td>
+
+</tr>
+
+</tfoot>
+
+</table>
+
+<div id="assetMessage"
+style="
+margin-top:20px;
+font-weight:bold;
+color:green;
+text-align:center;">
+</div>
+<script>
+
+// Automatically load Fixed Assets
+window.onload = function(){
+
+    if(typeof loadFixedAssets === "function"){
+
+        loadFixedAssets();
+
+    }
+
+};
+
+// Print Fixed Assets
+function printFixedAssets(){
+
+    window.print();
+
+}
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+
+© 2026 FinVision Uganda | Version 1.0<br>
+Developed by MUBANGIZI EMMANUEL
+
+</footer>
+
+</body>
+</html>

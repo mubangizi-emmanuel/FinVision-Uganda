@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>General Ledger | FinVision Uganda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4f8;
+color:#333;
+}
+
+header{
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+margin-bottom:5px;
+}
+
+.container{
+width:95%;
+max-width:1200px;
+margin:25px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+}
+
+h2{
+color:#0B6E4F;
+margin-bottom:20px;
+}
+
+.filter-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+label{
+font-weight:bold;
+margin-bottom:6px;
+}
+
+select{
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:15px;
+outline:none;
+}
+
+select:focus{
+border-color:#0B6E4F;
+}
+
+.buttons{
+margin-bottom:25px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:15px;
+margin-right:10px;
+margin-bottom:10px;
+transition:.3s;
+}
+
+.view{
+background:#198754;
+color:white;
+}
+
+.print{
+background:#0d6efd;
+color:white;
+}
+
+.back{
+background:#6c757d;
+color:white;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:#f8f9fa;
+padding:20px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.card h3{
+color:#0B6E4F;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:#0B6E4F;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+tfoot td{
+font-weight:bold;
+background:#f2f2f2;
+}
+
+footer{
+margin-top:30px;
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>FinVision Uganda</h1>
+
+<p>General Ledger</p>
+
+</header>
+
+<div class="container">
+
+<h2>General Ledger</h2>
+
+<div class="filter-box">
+
+<div class="form-group">
+
+<label>Select Account</label>
+
+<select id="ledgerAccount">
+
+<option value="All">All Accounts</option>
+<option value="Cash">Cash</option>
+<option value="Bank">Bank</option>
+<option value="Accounts Receivable">Accounts Receivable</option>
+<option value="Accounts Payable">Accounts Payable</option>
+<option value="Inventory">Inventory</option>
+<option value="Sales Revenue">Sales Revenue</option>
+<option value="Service Revenue">Service Revenue</option>
+<option value="Capital">Capital</option>
+<option value="Loans">Loans</option>
+<option value="Equipment">Equipment</option>
+<option value="Rent Expense">Rent Expense</option>
+<option value="Salaries Expense">Salaries Expense</option>
+<option value="Utilities Expense">Utilities Expense</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="view" onclick="loadGeneralLedger()">
+View Ledger
+</button>
+
+<button class="print" onclick="window.print()">
+Print Ledger
+</button>
+
+<button class="back"
+onclick="window.location.href='dashboard.html'">
+Back to Dashboard
+</button>
+
+</div>
+<div class="summary">
+
+<div class="card">
+<h3>Total Debit</h3>
+<p id="ledgerTotalDebit">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Total Credit</h3>
+<p id="ledgerTotalCredit">UGX 0</p>
+</div>
+
+<div class="card">
+<h3>Balance</h3>
+<p id="ledgerBalance">UGX 0</p>
+</div>
+
+</div>
+
+<h2>Ledger Entries</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Journal No.</th>
+<th>Account</th>
+<th>Type</th>
+<th>Debit (UGX)</th>
+<th>Credit (UGX)</th>
+<th>Reference</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ledgerTable">
+
+<tr>
+
+<td colspan="7">
+
+No ledger entries available.
+
+</td>
+
+</tr>
+
+</tbody>
+
+<tfoot>
+
+<tr>
+
+<td colspan="4">
+<strong>Totals</strong>
+</td>
+
+<td id="footerDebit">
+UGX 0
+</td>
+
+<td id="footerCredit">
+UGX 0
+</td>
+
+<td>-</td>
+
+</tr>
+
+</tfoot>
+
+</table>
+
+<div id="ledgerMessage"
+style="
+margin-top:20px;
+font-weight:bold;
+color:green;
+text-align:center;">
+</div>
+<script>
+
+function clearLedger(){
+
+    document.getElementById("ledgerAccount").selectedIndex = 0;
+
+}
+
+function printLedger(){
+
+    window.print();
+
+}
+
+// Automatically load ledger when page opens
+window.onload = function(){
+
+    if(typeof loadGeneralLedger === "function"){
+
+        loadGeneralLedger();
+
+    }
+
+};
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+
+© 2026 FinVision Uganda | Version 1.0<br>
+Developed by MUBANGIZI EMMANUEL
+
+</footer>
+
+</body>
+</html>

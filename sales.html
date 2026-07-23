@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FinVision Uganda - Sales</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#eef4f8;
+    margin:0;
+}
+
+header{
+    background:#0B6E4F;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    width:80%;
+    max-width:700px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px lightgray;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+button{
+    background:#0B6E4F;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    margin:8px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:green;
+}
+
+#result{
+    margin-top:20px;
+    font-size:18px;
+    color:darkgreen;
+}
+
+footer{
+    text-align:center;
+    margin-top:30px;
+    padding:15px;
+    color:#555;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>FinVision Uganda</h1>
+
+<h2>Record Sales</h2>
+
+</header>
+
+<div class="container">
+
+<input type="text" id="product" placeholder="Product Name">
+
+<input type="number" id="quantity" placeholder="Quantity">
+
+<input type="number" id="price" placeholder="Unit Price (UGX)">
+
+<input type="text" id="customer" placeholder="Customer Name">
+
+<select id="payment">
+
+<option value="Cash">Cash</option>
+<option value="Mobile Money">Mobile Money</option>
+<option value="Bank">Bank</option>
+
+</select>
+<label>Payment Status</label>
+
+<select id="paymentStatus">
+
+<option value="Paid">Paid</option>
+
+<option value="Unpaid">Unpaid</option>
+
+<option value="Partial">Partial</option>
+
+</select>
+
+<input type="date" id="date">
+
+<button onclick="saveSale()">Save Sale</button>
+
+<button onclick="clearForm()">Clear</button>
+
+<button onclick="window.location.href='dashboard.html'">
+Back to Dashboard
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function clearForm(){
+
+document.getElementById("product").value="";
+document.getElementById("quantity").value="";
+document.getElementById("price").value="";
+document.getElementById("customer").value="";
+document.getElementById("payment").selectedIndex=0;
+document.getElementById("date").value="";
+
+// Do not clear the result message
+// document.getElementById("result").innerHTML="";
+
+}
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+
+© 2026 FinVision Uganda | Version 1.0<br>
+Developed by MUBANGIZI EMMANUEL
+
+</footer>
+
+</body>
+</html>

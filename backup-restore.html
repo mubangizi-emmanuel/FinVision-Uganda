@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Backup & Restore | FinVision Uganda</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4f8;
+color:#333;
+}
+
+header{
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+margin-bottom:5px;
+}
+
+.container{
+width:95%;
+max-width:900px;
+margin:25px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+}
+
+h2{
+color:#0B6E4F;
+margin-bottom:20px;
+}
+
+.card{
+background:#f8f9fa;
+padding:20px;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+.card h3{
+color:#0B6E4F;
+margin-bottom:10px;
+}
+
+.buttons{
+margin-top:20px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:15px;
+margin-right:10px;
+margin-bottom:10px;
+transition:.3s;
+}
+
+.backup{
+background:#198754;
+color:white;
+}
+
+.restore{
+background:#fd7e14;
+color:white;
+}
+
+.back{
+background:#6c757d;
+color:white;
+}
+
+button:hover{
+opacity:.9;
+}
+
+footer{
+margin-top:30px;
+background:#0B6E4F;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>FinVision Uganda</h1>
+
+<p>Backup & Restore</p>
+
+</header>
+
+<div class="container">
+
+<h2>Database Backup & Restore</h2>
+<div class="card">
+
+<h3>Backup Database</h3>
+
+<p>
+Download a complete backup of your FinVision Uganda data.
+</p>
+
+<div class="buttons">
+
+<button
+class="backup"
+onclick="backupDatabase();">
+
+💾 Backup Database
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Restore Database</h3>
+
+<p>
+Restore your business data from a previously saved backup file.
+</p>
+
+<div class="buttons">
+
+<button
+class="restore"
+onclick="restoreDatabase();">
+
+📥 Restore Database
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Backup History</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Time</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="backupTable">
+
+<tr>
+
+<td colspan="3">
+
+No Backup History Available
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="back"
+onclick="window.location.href='dashboard.html';">
+
+🏠 Back to Dashboard
+
+</button>
+
+</div>
+
+<div id="backupMessage"
+style="
+margin-top:20px;
+font-weight:bold;
+color:green;
+text-align:center;">
+
+</div>
+<script>
+
+// Automatically initialize Backup & Restore page
+window.onload = function(){
+
+    console.log("Backup & Restore Ready");
+
+};
+
+// Print Backup Page
+function printBackup(){
+
+    window.print();
+
+}
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+<footer>
+
+© 2026 FinVision Uganda | Version 1.0<br>
+Developed by MUBANGIZI EMMANUEL
+
+</footer>
+
+</body>
+</html>
